@@ -1,4 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
+
 .wrapper {
+  --search-height: 46px;
+  --search-button-width: 52px;
+  --search-border-radius: 92px;
   width: 100%;
   height: var(--default-layout-header-height, 60px);
   box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
@@ -9,4 +14,77 @@
 .inner {
   height: 100%;
   width: var(--default-layout-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search {
+  box-sizing: content-box;
+  position: relative;
+  width: 361px;
+  height: var(--search-height);
+  background-color: #f1f1f2;
+  border-radius: var(--search-border-radius);
+  padding-left: 16px;
+  display: flex;
+
+  input {
+    flex: 1;
+    font-size: 1.6rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #161823;
+    background-color: transparent;
+    height: 100%;
+    caret-color: rgba(254, 44, 85, 1);
+  }
+
+  input:not(:placeholder-shown) ~ .search-btn {
+    color: rgba(22, 24, 35, 0.75);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.03);
+    width: 0.9px;
+    height: calc(var(--search-height) * 0.6);
+    top: calc(var(--search-height) * 0.2);
+    right: var(--search-button-width);
+  }
+
+  &:focus-within {
+    border: 1.5px solid rgba(22, 24, 35, 0.2);
+  }
+}
+
+.clear,
+.loading {
+  position: absolute;
+  color: rgba(22, 24, 35, 0.34);
+  right: calc(var(--search-button-width) + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.loading {
+  display: none;
+}
+.search-btn {
+  width: var(--search-button-width);
+  height: 100%;
+  border-top-right-radius: var(--search-border-radius);
+  border-bottom-right-radius: var(--search-border-radius);
+  font-size: 1.8rem;
+  color: rgba(22, 24, 35, 0.34);
+  padding: 2px 2px 0 0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+
+  &:active {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
 }
